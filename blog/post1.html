@@ -26,7 +26,8 @@
             </header>
             
             <div class="post-content">
-                <img src="../images/home-lab.png" alt="Home lab cluster setup." class="post-image">
+                <!--<img src="../images/home-lab.png" alt="Home lab cluster setup." class="post-image">-->
+                <p>Put Image here<br><br></p>
                 
                 <p>A home lab can be very useful for someone looking to get into cyber security. From setting up vulnerable machines to practice you ethical hacking skills or Wazuh to monitor logs. There are many different ways to setup a home lab and one is not better than the other. It is how you choose to use your lab that matters.</p>
                 
@@ -44,12 +45,26 @@
                     <li>500 GB Internal Samsung SSD</li>
                     <li>128 GB micro SD</li>
                 </ul>
-                <p><br>The goal is to use the home lab to monitor my network and devices. I plan to work towards a career on the blue team side and hence have setup my home lab to reflect my goal. We will create an 4 node cluster that will be managed by a switch.</p>
+                <p><br>The goal is to use the home lab to monitor my network and devices. I plan to work towards a career on the blue team side and hence have setup my home lab to reflect my goal. We will create an 4 node cluster that will be managed by a switch.<br></p>
                 <h3>Configure Raspberry Pi</h3>
-                <p>We will use Raspberry Pi Imager tool to put the latest image onto a 128GB flash drive (You can get away with 32 GB). During this stage we can edit the settings such as setting a hostname (pi-cluster), username (pi or any other username), password (the more secure the better), wireless LAN, and finally enable SSH (port 22).</p>
+                <p>We will use Raspberry Pi Imager tool to put the latest image onto a 128GB flash drive (You can get away with 32 GB). During this stage we can edit the settings such as setting a hostname (pi-cluster), username (pi or any other username), password (the more secure the better), wireless LAN, and finally enable SSH (port 22).<br></p>
 
                 <h3>Build the Head Node</h3>
-                <p>The head node was setup to connect to our local network. This will make it so we can just ssh right into it rather then setting up a keyboard, mouse and monitor.</p>
+                <p>The head node was setup to connect to our local network. This will make it so we can just ssh right into it rather then setting up a keyboard, mouse and monitor. The setup will also depend on the components we have. To make it easy to find we want our head node to be the top node (When I upgrade the lab it will be most left). This way we know it is the head node as its the top of the stack. We will need two ethernet cables, usb to ethernet adapter, internal SSD adapter, and a SSD.<br></p>
+
+                <p>During setup we configured the head node settings to connect wirelessly to the network. We should just be able to SSH directly into it using the username and password. We can use the command nmcli to display the current network configuration. We can plug in an ethernet cable from the Raspberry Pi to the network switch we will use for connecting the rest of the nodes. We should see that the ETH0 is disconnected which is alright. We will turn our head node into a DHCP server that will assign IP addresses to our other nodes.<br></p>
+
+                <p>As we are using our clustered server we may need to transfer large files to and from our server. It would be best if we can setup a wired connection from the Raspberry Pi to our network. We can use the USB to ethernet dongle and setup a ETH1 connection as ETH0 will be used for our other nodes. After plugging in the adapter and connecting it to our network we can see the following added when executing the command nmcli.<br></p>
+
+                <p>Image for the new ETH1 connection</p>
+
+                <p>Internally we can setup the ETH0 and allocate 192.168.50.0/24 address for our cluster. Our head node taking the IP address 192.168.50.1 to make it easy to remember. To do this we can run the following commands on the head node. If everything goes to plan then the next steps are to configure the DHCP server.<br></p>
+
+                <p>Image of the commands to run<br><br></p>
+
+
+
+
 
                 <h3>Examples of Home Lab Projects</h3>
                 <ul>
@@ -83,8 +98,8 @@
         <div class="container">
             <p>&copy; 2025 White-R4V3N. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/emma-gillespie-115526297/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/WHITE-R4V3N" target="_blank">GitHub</a>
                 <a href="https://www.youtube.com/@__R4V3N__" target="_blank">Youtube</a>
             </div>
         </div>
