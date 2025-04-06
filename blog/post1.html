@@ -58,14 +58,14 @@
 
                 <div class="tips">
                     <h4>Challenge 1</h4>
-                    <p>I ran into problems with the raspberry pi 4 not connecting to the internet using wireless. To get around this I plugged in the ethernet to USB dongle and that seemed to work. We were going to use the dongle regardless as we may be transfering larger files and it would be faster over the ethernet. In the screen shot you can see that the wlan is not active.</p>
+                    <p>I ran into problems with the raspberry pi 4 not connecting to the internet using wireless. To get around this I plugged in the ethernet to USB dongle and that seemed to work. We were going to use the dongle regardless as we may be transfering larger files and it would be faster over the ethernet.</p>
                 </div>
 
-                <!-- Image of the ETH1 connection -->
+                <img src="../images/nmcli-image.png" alt="ETH0 view using command nmcli in the raspberry pi terminal." class="post-image">
 
-                <p>Internally we can setup the ETH0 and allocate 192.168.50.0/24 address for our cluster. Our head node taking the IP address 192.168.50.1 to make it easy to remember. To do this we can run the following commands on the head node. If everything goes to plan then the next steps are to configure the DHCP server.<br><br></p>
+                <p>Internally we can setup the ETH0 and allocate 192.168.50.0/24 address for our cluster. Our head node taking the IP address 192.168.50.1 to make it easy to remember. To do this we can run the following commands on the head node. If everything goes to plan then the next steps are to configure the DHCP server.<br></p>
 
-                <!-- Image for the commands to set the head nodes IP address and nmcli to show the changes -->
+                <img src="../images/nmcli-con-du.png" alt="ETH0 setting the IP address and brining ETH0 down and back up." class="post-image">
 
                 <h3>Configure the DHCP server</h3>
 
@@ -73,27 +73,23 @@
 
                 <div class="tips">
                     <h4>Challenge 2</h4>
-                    <p>While trying to install the DHCP server it failed at first and I had to research some fixes or alternative. Chances are there could be updates that happen and some application names may change over time due to the updates. It is also possible that applications become redundant or the software has been sunsetted. Problem solving is important especially in the tech world.</p>
+                    <p>I ran into trouble with the eth0 not being activated. I did some digging and thought that maybe it was because the firmware needed an update or that I just needed to put eth0 in the up state. However, a far simplier and the fix for myself was using a different ethernet cable.</p>
                 </div>
 
-                <!-- This is where the image for the command will go -->
+                <img src="../images/install-dhcp.png" alt="Command to install the DHCP service." class="post-image">
 
-                <p>Once we have it installed we can then edit the /etc/dhcp/dhcp.conf file. We will need to add lines for the internal cluster and the head node specifically.<br><br></p>
+                <p>Once we have it installed we can then edit the /etc/dhcp/dhcpd.conf file. We will need to add lines for the internal cluster and the head node specifically.<br></p>
 
-                <!-- Image for the .conf file changes -->
+                <img src="../images/dhcpd-conf.png" alt="The dhcpd.conf file after the edits have been made." class="post-image">
 
-                <p>We then will need to edit /etc/default/isc-dhcp-server and /etc/hosts files respectively.<br><br></p>
-
-                <!-- Two images for both the dhcp and hosts file changes -->
-
-                <p>We now have it setup so that unknown hosts will be allocated an IP Address when they connect to the switch. My switch is unmanaged so I need to wait until I connect my first node in order to see this. We have set it up so that new devices will get an IP Address starting at 192.168.50.20 and moving forward rather than getting a random one.<br><br></p>
+                <p>We now have it setup so that unknown hosts will be allocated an IP Address when they connect to the switch. My switch is unmanaged so I need to wait until I connect my first node in order to see if this has worked. We have set it up so that new devices will get an IP Address starting at 192.168.50.20 and moving forward rather than getting a random one.<br><br></p>
 
                 <h3>Adding the External SSD</h3>
                 <p>Now we are going to add an external SSD to store the operating system and files the cluster may use. We will also have to make sure that the cluster has access to the attached SSD to the head node.<br><br></p>
 
-                <p>We will create a single ext4 partition on the disk and format with a GUID partition table. This will give the raspberry pi's enough space during boot. We can achieve this with the following commands:<br><br></p>
+                <p>We will create a single ext4 partition on the disk and format with a GUID partition table. This will give the raspberry pi's enough space during boot. We can achieve this with the following commands:<br></p>
 
-                <!-- Image for the commands to partition the attached SSD -->
+                <img src="../images/partition-ssd-commands.png" alt="Commands to partition the SSD drive connected to the head node." class="post-image">
 
                 <p>We can then manually mount the disk and check to make sure that everything is working properly. We can then make sure it will automatically mount at boot by adding the following to /etc/fstab file.<br></p>
 
@@ -102,12 +98,18 @@
                     <p>Make sure to manuallly test if the disk will mount before adding it to the fstab file. If you add and do not test it there is potential for the OS to hang at boot. This is due to the disk not mounting properly or is not available.</p>
                 </div>
 
-                <p>To make the new SSD available across the cluster we need to install the NFS server. This tool will allow the sharing of the mount point based on IP address. To achieve this we can run the following commands to install, create a moint point to share, and share the mount point over the network.<br><br></p>
+                <img src="../images/ssd-mount.png" alt="Commands to mount the SSD." class="post-image">
 
-                <!-- Image for the creation of the mount point to share and editing the file -->
+                <h3>Disk Useable by the Cluster</h3>
+
+                <p>To make the new SSD available across the cluster we need to install the NFS server. This tool will allow the sharing of the mount point based on IP address. To achieve this we can run the following commands to install, create a moint point to share, and share the mount point over the network.<br></p>
+
+                <!-- We need to add the a picture of making the SSD available to the cluster -->
 
                 <p>Finally we can then start both rpcbind and nfs-server and reboot. Like that the head node has been created and is ready to go. Next we need to creat our first node and then add the other 2 nodes following a similar process.<br><br></p>
 
+
+                <!--
                 <h3>Node Setup</h3>
 
                 <p>Setting up the head node took a lot of steps. If you have fallen asleep its time to wake up again for the last couple steps we need to do. The process for all the other nodes we are adding are very similar save maybe an extra step or two for the first node we add. This makes it easier to setup each node and hopefully less boring.<br><br></p>
@@ -135,7 +137,7 @@
                     <li>DVWA (Damn Vulnerable Web Application)</li>
                 </ul>
                 <p>And there are far more projects you can do.</p>
-                
+                -->
                 
                 <div class="conclusion">
                     <h4>Final Thoughts</h4>
