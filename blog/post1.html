@@ -22,7 +22,7 @@
         <article class="blog-post">
             <header class="post-header">
                 <h2>Creating a Cyber Security Home Lab Cluster</h2>
-                <p class="post-meta">Posted on <time datetime="2025-04-1">April 1, 2025</time> | Category: <a href="#">Networking</a>, <a href="#">Hardware</a></p>
+                <p class="post-meta">Posted on <time datetime="2025-04-1">April 1, 2025</time> | Category: <a href="#">Networking</a>, <a href="#">DIY</a></p>
             </header>
             
             <div class="post-content">
@@ -61,11 +61,11 @@
                     <p>I ran into problems with the raspberry pi 4 not connecting to the internet using wireless. To get around this I plugged in the ethernet to USB dongle and that seemed to work. We were going to use the dongle regardless as we may be transfering larger files and it would be faster over the ethernet.</p>
                 </div>
 
-                <img src="../images/nmcli-image.png" alt="ETH0 view using command nmcli in the raspberry pi terminal." class="post-image">
+                <img src="../images/Homelab-diy/nmcli-image.png" alt="ETH0 view using command nmcli in the raspberry pi terminal." class="post-image">
 
                 <p>Internally we can setup the ETH0 and allocate 192.168.50.0/24 address for our cluster. Our head node taking the IP address 192.168.50.1 to make it easy to remember. To do this we can run the following commands on the head node. If everything goes to plan then the next steps are to configure the DHCP server.<br></p>
 
-                <img src="../images/nmcli-con-du.png" alt="ETH0 setting the IP address and brining ETH0 down and back up." class="post-image">
+                <img src="../images/Homelab-diy/nmcli-con-du.png" alt="ETH0 setting the IP address and brining ETH0 down and back up." class="post-image">
 
                 <h3>Configure the DHCP server</h3>
 
@@ -76,11 +76,11 @@
                     <p>I ran into trouble with the eth0 not being activated. I did some digging and thought that maybe it was because the firmware needed an update or that I just needed to put eth0 in the up state. However, a far simplier and the fix for myself was using a different ethernet cable.</p>
                 </div>
 
-                <img src="../images/install-dhcp.png" alt="Command to install the DHCP service." class="post-image">
+                <img src="../images/Homelab-diy/install-dhcp.png" alt="Command to install the DHCP service." class="post-image">
 
                 <p>Once we have it installed we can then edit the /etc/dhcp/dhcpd.conf file. We will need to add lines for the internal cluster and the head node specifically.<br></p>
 
-                <img src="../images/dhcpd-conf.png" alt="The dhcpd.conf file after the edits have been made." class="post-image">
+                <img src="../images/Homelab-diy/dhcpd-conf.png" alt="The dhcpd.conf file after the edits have been made." class="post-image">
 
                 <p>We now have it setup so that unknown hosts will be allocated an IP Address when they connect to the switch. My switch is unmanaged so I need to wait until I connect my first node in order to see if this has worked. We have set it up so that new devices will get an IP Address starting at 192.168.50.20 and moving forward rather than getting a random one.<br><br></p>
 
@@ -89,7 +89,7 @@
 
                 <p>We will create a single ext4 partition on the disk and format with a GUID partition table. This will give the raspberry pi's enough space during boot. We can achieve this with the following commands:<br></p>
 
-                <img src="../images/partition-ssd-commands.png" alt="Commands to partition the SSD drive connected to the head node." class="post-image">
+                <img src="../images/Homelab-diy/partition-ssd-commands.png" alt="Commands to partition the SSD drive connected to the head node." class="post-image">
 
                 <p>We can then manually mount the disk and check to make sure that everything is working properly. We can then make sure it will automatically mount at boot by adding the following to /etc/fstab file.<br></p>
 
@@ -98,23 +98,28 @@
                     <p>Make sure to manuallly test if the disk will mount before adding it to the fstab file. If you add and do not test it there is potential for the OS to hang at boot. This is due to the disk not mounting properly or is not available.</p>
                 </div>
 
-                <img src="../images/ssd-mount.png" alt="Commands to mount the SSD." class="post-image">
+                <img src="../images/Homelab-diy/ssd-mount.png" alt="Commands to mount the SSD." class="post-image">
 
                 <h3>Disk Useable by the Cluster</h3>
 
                 <p>To make the new SSD available across the cluster we need to install the NFS server. This tool will allow the sharing of the mount point based on IP address. To achieve this we can run the following commands to install, create a moint point to share, and share the mount point over the network.<br></p>
 
-                <!-- We need to add the a picture of making the SSD available to the cluster -->
+                <img src="../images/Homelab-diy/create-share-point.png" alt="Create the share point folder on the SSD." class="post-image">
+
+                <p>To share the mount point we can simply add the follwoign line into the /etc/exports file.<br></p>
+
+                <img src="../images/Homelab-diy/exports-line.png" alt="Line to add to the exports file to share the folder." class="post-image">
 
                 <p>Finally we can then start both rpcbind and nfs-server and reboot. Like that the head node has been created and is ready to go. Next we need to creat our first node and then add the other 2 nodes following a similar process.<br><br></p>
 
+                <img src="../images/Homelab-diy/enable-rpcbind.png" alt="Commands to enable rpcbind and the share point server." class="post-image">
 
-                <!--
+                
                 <h3>Node Setup</h3>
 
                 <p>Setting up the head node took a lot of steps. If you have fallen asleep its time to wake up again for the last couple steps we need to do. The process for all the other nodes we are adding are very similar save maybe an extra step or two for the first node we add. This makes it easier to setup each node and hopefully less boring.<br><br></p>
 
-                <p>Unlike the first one we can create a image to boot from with only SSH enabled. We can remove the settings to add the wireless connection from the image. We will setup the Raspberry Pi to boot using the network however, we want to boot using the head node rather than wirelessly.<br></p>
+                <p>Unlike the first one we can create a image to boot from with only SSH enabled. We can remove the settings to add the wireless connection from the image. We will setup the Raspberry Pi to boot using the network and we need the Raspberry Pi to boot at least once to set it up.<br></p>
 
                 <div class="tips">
                     <h4>Tip 2</h4>
@@ -123,11 +128,43 @@
 
                 <p>Plug the ethernet from the node to the switch and then boot the raspberry pi. The board should come up and be visible under the dhcp-lease-list. This way we can check and make sure that the DHCP is able to assign the nodes an IP address and that our DHCP server is working. We can then ssh into the new board and enable network booting.<br><br></p>
 
+                <img src="../images/Homelab-diy/dhcp-lease-list.png" alt="Showing that the head node DHCP server works." class="post-image">
+
+                <p>We can now run raspi-config and choose Advanced Options > Boot Order > Network Boot. You may need to update the firmware which it should prompt you for. Press yes and once complete you will need to reboot the device. After rebooting we can confirm the boot order we are using.<br><br></p>
+                
+                <img src="../images/Homelab-diy/boot-order.png" alt="Command to confirm the boot order." class="post-image">
+
+                <p>We need to make note of the Node ethernet MAC address and serial number. we can run two commands to achieve this.<br></p>
+
+                <img src="../images/Homelab-diy/eth-serial.png" alt="Commands to get the ethernet MAC and serial of the first node." class="post-image">
+
+                <p>After we gather this information we need to go back to our head node and setup a boot server. This way we can have the nodes boot from network rather than having SD cards for each of them. To do this we can use the following commands:<br></p>
+
+                <!-- Image for he commands to install the boot server and setup folders -->
+                
+                <p>We then need to edit the /etc/default/tftpd-hpa file and add these lines of code. After adding the lines of code we can restart the service.<br></p>
+
+                <!-- Image for lines of code to add to the file /etc/default/tftpd-hpa -->
+
+                <p>Now we can setup our boot image. We will create a seperate boot image for each client or node allowing for stronger security by changing user names and password between each node. This is inpart to identity being the new perimiter security. We need to grab the latest image and mount it so we can make some changes. After we can copy the contents to our external disk.<br></p>
+
+                <!-- Image for getting the latest image and setting up the folders -->
+                <!-- Second image for the setting up the folders and latest image -->
+
+                <p>After we can then customize the root folder to setup the credentials to be used on the system or rather the firth node.<br></p>
+
+                <!-- Image for cutomizing the root file system. Use a password and username that we will not use on the actual node -->
+
+                <p>Then add it to the /etc/exports file on the head node. We then can clean up after ourselves.<br></p>
+
+                <!-- Image for adding the line and cleaning up after ourselves -->
+
+                <p>The final step we need to do before network booting out node is to edit the /etc/dhcp/dhcpd.conf file.<br></p>
+
+                <!-- Image for editing the dhcpd.conf file again -->
 
 
-
-
-
+                <!--
                 <h3>Examples of Home Lab Projects for the Cluster</h3>
                 <ul>
                     <li>Wuzah SEIM/Log Management</li>
@@ -149,9 +186,9 @@
                 <div class="tags">
                     <!--<a href="#">BACK TO TOP</a>-->
                     <span>Tags:</span>
-                    <a href="#">vulnerabilities</a>,
-                    <a href="#">threat intelligence</a>,
-                    <a href="#">risk management</a>
+                    <a href="#">home lab</a>,
+                    <a href="#">diy</a>,
+                    <a href="#">project</a>
                 </div>
             </footer>
         </article>
