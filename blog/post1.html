@@ -159,9 +159,52 @@
 
                 <!-- Image for adding the line and cleaning up after ourselves -->
 
-                <p>The final step we need to do before network booting out node is to edit the /etc/dhcp/dhcpd.conf file.<br></p>
+                <p>The final step we need to do before network booting out node is to edit the /etc/dhcp/dhcpd.conf file. After we can reboot the head node.<br></p>
 
                 <!-- Image for editing the dhcpd.conf file again -->
+
+                <div class="tips">
+                    <h4>System Crash</h4>
+                    <p>I got to this point when I must have messed something up in a config or in setting up the boot image. What happened is that upon reboot the head node was no longer connecting through the switch. This was stopping me from connecting to the head node itself and thus the cluster was isolated. I could've connected my computer to the cluster. However, the problem persists of where the problem lays. We just need to embody github: commit and push forward.</p>
+                </div>
+
+                <h3>Network Boot the Node</h3>
+
+                <p>If all goes to plan then we should be able to SSH directly into the compute node. There will be a few things we need to clean up but it should work as intended. Our image during boot did not boot cleanly and you would have seen this if you had a monitor or check the logs. To fix these errors we can un-install the swap daemon and turn off the resize file system on first boot.<br></b></p>
+
+                <!-- Image for un-installing the daemon and turning off the resize at first boot -->
+
+                <p>Next we can change the hostname using the raspi-config command. We can change the name to rpi1 under System Options > Hostname and enter the new hostname. Finally we can add the future and current nodes under the /etc/hosts file. This will make it easier as we continue to add the other 2 nodes (or more depending on your system).<br></p>
+
+                <!-- Image for the added ip addresses in the /etc/hosts file -->
+
+                <h3>Mount the Scratch Disk</h3>
+
+                <p>Logging back into the compute node we can then add the following mount point.<br></p>
+
+                <!-- Image for the mountpoint -->
+
+                <p>We then can add the mount point into the /etc/fstab file and reboot.<br></p>
+
+                <!-- Image for adding the mount point into the fstab of the cumpute node-->
+
+                <h3>Secure Shell Without Password (Optional)</h3>
+
+                <p>Enabling a connection using a public and private key will be more secure. This will create a RSA key that can be used to login to the compute nodes. Far easier than typing in the passwords each time when you want to ssh into them. On the compute node we need to enable PublicKey Authentication. To do this we need to edit the /etc/ssh/sshd_config file.<br></p>
+
+                <!-- Image for the changes that need to be made to /etc/ssh/shd_config -->
+
+                <p>Now we need to reboot the compute node. Going back to the head node we then need to create a Public/Private key pair. We will also need to distribute the public key to the compute node.<br></p>
+
+                <!-- Image for gernerating the public/private key pair -->
+
+                <p>We then should be able to login to the compute node without having to type in the password (We can use a passphrase to still make it a little more secure).<br><br></p>
+
+                <h3>Accessing the Outside World</h3>
+
+                <p></p>
+
+
 
 
                 <!--
