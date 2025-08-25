@@ -1,52 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White-R4V3N</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>White-R4V3N</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="intro">
-            <img src="images/profile2.png" alt="Profile Picture" class="profile-img">
-            <h2>Welcome to my webpage!</h2>
-            <p>I'm a passionate cyber security student sharing my thoughts, projects,and experiences in the field of cyber security. Here you can find my ramblings in blog posts about projects or interests I have.</p>
-        </section>
-
-        <section class="recent-posts">
-            <h2>Blog Posts</h2>
-            <div class="post-preview">
-                <h3><a href="blog/post1.html">Creating a Cyber Security Home Lab Cluster</a></h3>
-                <p class="post-meta">Posted on <time datetime="2025-04-1">April 1, 2025</time></p>
-                <p>A beginner DIY guide to setting up a home lab for cyber security. What will you build? (WORK IN PROGRESS AND NOT COMPLETE YET)</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Emma Gillespie</title>
+        <link rel="stylesheet" href="styles/index.css">
+        
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <!--<li><a href="index.html">Home</a></li>-->
+                        <button class="btn toggle" id="themeToggle" aria-label="Toggle theme">☀️</button>
+                    </ul>
+                </nav>
             </div>
-        </section>
-    </main>
+        </header>
 
-    <footer>
+        <main class="container">
+            <section class="intro">
+                <img src="images/profile.jfif" alt="Emma holding a rubber duck" class="profile-img">
+                <!--<hr>-->
+                <h1>Emma Gillespie</h1>
+                <h5>She/Her</h5>
+                <h2>Cyber Security • Development • Creator</h2>
+                <div class="links">
+                    <a href="https://www.linkedin.com/in/emma-gillespie-115526297/" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn icon">
+                        LinkedIn
+                    </a>
+                    <a href="https://www.youtube.com/@yeolsoe-ui_segye" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube icon">
+                        YouTube
+                    </a>
+                    <a href="https://github.com/WHITE-R4V3N" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub icon">
+                        GitHub
+                    </a>
+                </div>
+                <hr>
+            </section>
+            <section class="resume-area">
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Security Tools</h4>
+                        <ul>
+                            <li>Nessus</li>
+                            <li>Nmap</li>
+                            <li>Wireshark</li>
+                            <li>Kali Linux/Kali Purple</li>
+                            <li>Sift Workstation</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Frameworks & Standards</h4>
+                        <ul>
+                            <li>MITRE ATT&CK</li>
+                            <li>Cyber Kill Chain</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Programming/Scripting Languages</h4>
+                        <ul>
+                            <li>Python (proficient)</li>
+                            <li>Bash (basic)</li>
+                            <li>C (basic)</li>
+                            <li>C# (minimal)</li>
+                            <li>SQL (robust)</li>
+                            <li>Rust (basic)</li>
+                            <li>Godot (minimal)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="projects">
+                <div class="wrap">
+                    <div class="controls">
+                        <label class="sr-only" for="search">Search Projects</label>
+                        <input id="search" type="search" placeholder="Search by title or description..." autocomplete="on" />
+
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <select id="sortSelect" aria-label="Sort projects">
+                        <option value="az" selected>Sort: Title A → Z</option>
+                        <option value="za">Sort: Title Z → A</option>
+                        <option value="new">Sort: Newest</option>
+                        <option value="old">Sort: Oldest</option>
+                    </select>
+
+                    <div class="tag-row" id="tagRow" aria-label="Filter by tags"></div>
+                </div>
+
+                <div class="wrap">
+                    <section class="grid" id="grid">
+                        <!-- This is where the cards go. -->
+                        <article class="card" data-title="52 Playing Cards" data-tags="python,html,css,web" data-date="2025-08-25">
+                            <div class="thumb" aria-hidden="true">
+                                <!-- IMG -->
+                                <img src="images/deck-of-cards.png"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="title">52 Playing Cards</div>
+                                <p class="desc">Using a standard deck of 52 cards, projects range in difficulty. Ace being the lowest is the easiest and Kings being the hardest.</p>
+                                <div class="chips">
+                                    <span class="chip">PYTHON</span>
+                                    <span class="chip">HTML</span>
+                                    <span class="chip">CSS</span>
+                                    <span class="chip">WEB</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/WHITE-R4V3N/52-Playing-Cards" target="_blank" rel="noopener">Source</a>
+                                    <!-- Potential to add live demo here. -->
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card" data-title="Capstone: Calista" data-tags="python" data-date="2025-08-21">
+                            <div class="thumb" aria-hidden="true">
+                                <!-- IMG -->
+                                <img src="images/calista.png"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="title">Calista</div>
+                                <p class="desc">Custom coded AI that focuses on Cyber Security. Boasts two different neural network to process language into action.</p>
+                                <div class="chips">
+                                    <span class="chip">PYTHON</span>
+                                </div>
+                                <div class="actions">
+                                    <h4>This project is not curently open for public.</h4>
+                                    <!-- <a href="#" target="_blank" rel="noopener">Source</a> -->
+                                    <!-- Potential to add live demo here. -->
+                                    <!-- <a href="#" target="_blank" rel="noopener">Demo</a> -->
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card" data-title="Python Code Stack" data-tags="python" data-date="2025-08-26">
+                            <div class="thumb" aria-hidden="true">
+                                <!-- IMG -->
+                                <img src="images/stack-in-python.webp"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="title">Python Code Stack</div>
+                                <p class="desc">A concept that executes stacked code or functions on the same piece of data. Just a fun python side project to do.</p>
+                                <div class="chips">
+                                    <span class="chip">PYTHON</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/WHITE-R4V3N/Python-Code-Stack" target="_blank" rel="noopener">Source</a>
+                                    <!-- Potential to add live demo here. -->
+                                    <!-- <a href="#" target="_blank" rel="noopener">Demo</a> -->
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+                <div class="empty" id="empty">No projects match your filters. Try clearing tags or the search box.</div>
+            </section>
+        </main>
+        <footer>
         <div class="container">
-            <p>&copy; 2025 White-R4V3N. All rights reserved.</p>
+            <p>&copy; 2025 Emma Gillespie. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/emma-gillespie-115526297/" target="_blank">LinkedIn</a>
+                <a href="https://www.youtube.com/@yeolsoe-ui_segye" target="_blank">Youtube</a>
                 <a href="https://github.com/WHITE-R4V3N" target="_blank">GitHub</a>
-                <a href="https://www.youtube.com/@__R4V3N__" target="_blank">Youtube</a>
             </div>
         </div>
     </footer>
-
-    <script src="js/script.js"></script>
-</body>
+    <script src="scripts/main.js"></script>
+    </body>
 </html>
