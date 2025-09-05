@@ -1,3 +1,8 @@
+// --- Fade in Webpage ---
+window.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in")
+});
+
 // --- Theme toggle ---
 const rootEl = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');

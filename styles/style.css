@@ -20,86 +20,6 @@
     --chip: #518fbc;
     --border: #22283a;
     --shadow: 0 10px 25px rgba(0,0,0,.25);
-
-    /*
-    --bg: #FFECD1;
-    --panel: #ffffff;
-    --text: #4B2E2E;
-    --muted: #614141;
-    --card: #eec6ae;
-    --accent: #FF8C42;
-    --accent-2: #FFD166;
-    --chip: #f1f3f9;
-    --border: #22283a;
-    --shadow: 0 10px 25px rgba(0,0,0,.08);*/
-
-    /* Dark Mode Colours */
-    --dm-background: #0d0c12;
-    --dm-primary-accent: #ff2ec7;
-    --dm-secondary-accent: #00ff85;
-    --dm-highlight: #fffc4d;
-    --dm-text-light: #e5e5e5;
-    --dm-text-muted: #7a7a7a;
-    /* 
-    --lm-background: #1A1A1A; I like this colour for the darkmode background
-    --lm-primary-accent: #425A8B;
-    --lm-secondary-accent: #A08C75;
-    --lm-highlight: #E8B89E;
-    --lm-text-dark: #E0E0E0;
-    --lm-text-muted: #9A9A9A;
-
-    --dm-background: #0d0c12;
-    --dm-primary-accent: #ff2ec7;
-    --dm-secondary-accent: #00ff85;
-    --dm-highlight: #fffc4d;
-    --dm-text-light: #e5e5e5;
-    --dm-text-muted: #7a7a7a;
-    */
-
-    /* Light Mode Colours */
-    --lm-background: #FFECD1;
-    --lm-primary-accent: #FFF0DB;
-    --lm-secondary-accent: #FF8C42;
-    --lm-highlight: #eec6ae;
-    --lm-text-dark: #4B2E2E;
-    --lm-text-muted: #E9A43D;
-    /*
-    --lm-background: #E6E5D7;
-    --lm-primary-accent: #A95C46;
-    --lm-secondary-accent: #D6A649;
-    --lm-highlight: #E8B89E;
-    --lm-text-dark: #4B3621;
-    --lm-text-muted: #7C8068;
-
-    --lm-background: #F5F5F0;
-    --lm-primary-accent: #425A8B;
-    --lm-secondary-accent: #A08C75;
-    --lm-highlight: #E8B89E;
-    --lm-text-dark: #292929;
-    --lm-text-muted: #737373;
-
-    My favourite one by far
-    --lm-background: #d4dcd5;
-    --lm-primary-accent: #b5786a;
-    --lm-secondary-accent: #a6a377;
-    --lm-highlight: #eec6ae;
-    --lm-text-dark: #2d1c1f;
-    --lm-text-muted: #7d4434;
-    
-    --lm-background: #f2f1dc;
-    --lm-primary-accent: #ff884d;
-    --lm-secondary-accent: #a6a377;
-    --lm-highlight: #fad09c;
-    --lm-text-dark: #271e10;
-    --lm-text-muted: #5f4a2f;
-    
-    --lm-background: #f4e1d7 #efd1c2;
-    --lm-primary-accent: #ffb3b3;
-    --lm-secondary-accent: #ffdb99;
-    --lm-highlight: #b3cfff #CB6843;
-    --lm-text-dark: #3a2f2f;
-    --lm-text-muted: #6b5e5e;
-    */
 }
 
 /* Light Theme */
@@ -131,6 +51,12 @@ body {
     line-height: 1.55;
     color: var(--text);
     background-color: var(--bg);
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+body.fade-in {
+    opacity: 1;
 }
 
 .container {
