@@ -4,42 +4,120 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Emma Gillespie</title>
-        <link rel="stylesheet" href="styles/business-card.css">
+        <link rel="stylesheet" href="styles/main.css">
     </head>
     <body>
-        <div class="business-card" id="card">
-            <table class="card-table">
-                <tr>
-                    <td>
-                        <p class="name">Emma Gillespie</p>
-                        <p class="title">Information Security Systems Graduate</p>
-                        <p class="information">
-                            <span>✉️</span>
-                            <a href="mailto:emma.morgan.gillespie@gmail.com">emma.morgan.gillespie@gmail.com</a>
-                        </p>
-                        <p class="information">
-                            <span>📱</span>
-                            <a href="tel:+14033052138">+1 (403) 305-2138</a>
-                        </p>
-                        <p class="information">
-                            <span>🌐</span>
-                            <a href="#">Click this card!</a>
-                        </p>
-                    </td>
-                </tr>
-            </table>
+        <nav id="navbar">
+            <ul>
+                <li data-index="0" class="active">Home</li>
+                <li data-index="1">About</li>
+                <li data-index="2">Projects</li>
+                <li data-index="3">CTF</li>
+            </ul>
+        </nav>
+        <div id="app">
+            <!-- Hero Section -->
+            <section class="panel active" id="hero">
+                <div class="content">
+                    <h1>Emma Gillespie</h1>
+                    <p id="hp-1">Information Security Systems Graduate</p>
+                    <p id="hp-2">I am passionate about cybersecurity and software development. Focusing on learning through hands on projects and certifications. </p>
+                </div>
+                <img src="./images/hero (3).png" alt="Hero Image">
+            </section>
+
+            <!-- About Section -->
+            <section class="panel" id="about">
+                <div class="info">
+                    <img class="about-img" src="./images/about.jpeg" alt="About Image">
+                    <h2>Emma Gillespie</h2>
+                    <h4>Information Security Systems Graduate</h4>
+                    <!-- Icons and Links -->
+                    <ul class="social-links">
+                        <a href="https://github.com/WHITE-R4V3N" target="_blank"><img src="https://cdn.simpleicons.org/github/9ca18f"/></a>
+                        <a href="https://www.instagram.com/the_cyber_pond/" target="_blank"><img src="https://cdn.simpleicons.org/instagram/9ca18f"/></a>
+                        <a href="https://www.youtube.com/@duck-in-shell" target="_blank"><img src="https://cdn.simpleicons.org/youtube/9ca18f"/></a>
+                    </ul>
+                </div>
+                <div class="content">
+                    <h3>About Me</h3>
+                    <p><span>Hi, I'm Emma!</span> I recently graduated Information Security Systems at SAIT and I am eager to kickstart my career in cybersecurity. I have a strong passion for learning and am constantly seeking out new challenges to expand my knowledge and skills. I am particularly interested in penetration testing, vulnerability assessment, and secure software development. I am excited to apply my skills and knowledge to real-world scenarios and contribute to the field of cybersecurity.</p>
+                    <a href="./documents/2026-04-14_resume.pdf" target="_blank" download>
+                        <button>Download CV</button>
+                    </a>
+                    <div class="skills-interests">
+                        <div class="skills">
+                            <h4>Skills</h4>
+                            <ul>
+                                <li>Penetration Testing</li>
+                                <li>Vulnerability Assessment</li>
+                                <li>Scripting</li>
+                                <li>Automation</li>
+                                <li>Artificial Intelligence</li>
+                            </ul>
+                        </div>
+                        <div class="interests">
+                            <h4>Interests</h4>
+                            <ul>
+                                <li>Cybersecurity Capture the Flag</li>
+                                <li>Hiking/Backpacking</li>
+                                <li>Travel</li>
+                                <li>Reading</li>
+                                <li>Golfing</li>
+                                <li>Conferences</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="panel" id="projects">
+                <div id="github-projects"></div>
+            </section>
+
+            <!-- CTF Section -->
+            <section class="panel" id="ctf">
+                <div class="ctf-desc">
+                    <h2>Mini CTF Challenges</h2>
+                    <p>Can you find all the flags?</p>
+
+                    <div class="challenge">
+                        <p>Find <span>4 hidden flags</span> across this page.</p>
+                        <p>Combine all the words in the {} to form the final flag!<br>(flag{each_flag_piece})</p>
+                        <input id="flagInput" placeholder="Enter the final flag"/>
+                        <br>
+                        <button id="submitFlag" onclick="checkFlag()">Submit Flag</button>
+                        <p id="flagResult"></p>
+                    </div>
+                    <button class="hidden-btn" onclick="printflag()">Flag 4</button>
+                </div>
+                <p class="flag"></p>
+                <div class="ctf-challenges">
+                    <!-- I can hide a flag here and no one will notice {There_is} -->
+                    <div class="challenge-card">
+                        <div class="hint">No Comment</div>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="hint">Based Console</div>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="hint">Hidden CSS</div>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="hint">Poking Buttons</div>
+                    </div>
+                    <div class="challenge-card" id="locked">
+                        <div class="lock">🔒 Locked</div>
+                    </div>
+                    <div class="challenge-card" id="locked">
+                        <div class="lock">🔒 Locked</div>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <script>
-            const card = document.getElementById("card");
-
-            card.addEventListener("click", () => {
-                card.classList.add("fade-out");
-
-                setTimeout(() => {
-                    window.location.href = "https://white-r4v3n.github.io/portfolio.html"
-                }, 1000);
-            });
-        </script>
     </body>
+    <script src="scripts/git_projects.js"></script>
+    <script src="scripts/scroll.js"></script>
+    <script src="scripts/ctf.js"></script>
 </html>

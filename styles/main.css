@@ -1,0 +1,452 @@
+@font-face {
+  font-family: 'CedarvilleCursive';
+  src: url('../fonts/CedarvilleCursive-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Macondo';
+  src: url('../fonts/Macondo-Regular.ttf') format('truetype');
+}
+
+:root {
+    /* Colour Palette */
+    --bg: #1d1e21;
+    --panel: #2b2f26;
+    --panel-2: #505445;
+    --panel-3: #9ca18f;
+    --panel-4: #8b917c;
+    --text: #a17b5c;
+    --muted: #784f2f;
+    --scale: clamp(0.7, 1vw, 1.2);
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--panel-3);
+    font-size: calc(16px * var(--scale));
+}
+
+#app {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+#navbar {
+    font-family: 'Macondo';
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    width: clamp(300px, 50vw, 800px);
+    height: calc(60px * var(--scale));
+    border-radius: 20px;
+
+    background: var(--panel-2);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+    transform: translateX(-50%);
+}
+
+#navbar ul {
+    display: flex;
+    gap: clamp(20px, 3vw, 60px);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar li {
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Default */
+#navbar li {
+    color: var(--text);
+}
+
+/* Hover */
+#navbar li:hover {
+    color: var(--panel-3);
+}
+
+/* ACTIVE SECTION */
+#navbar li.active {
+    background: var(--panel);
+    color: var(--panel-3);
+}
+
+.panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    padding: clamp(20px, 5vw, 80px);
+
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.9);
+    transition: all 0.8s ease;
+}
+
+/* Active section */
+.panel.active {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    z-index: 2;
+}
+
+/* Hero styling */
+#hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-top: 5vw;
+    gap: 5vw;
+
+    color: var(--text);
+}
+
+#hero .content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    max-width: 40vw;
+    padding-left: 10vw;
+    margin-top: -16vw;
+}
+
+#hero img {
+    position: relative;
+    border-radius: 15px;
+    flex: 1;
+    z-index: 0;
+
+    top: auto;
+
+    width: 35vw;
+    max-width: 600px;
+    height: auto;
+    object-fit: cover;
+}
+
+#hero h2 {
+    color: var(--panel-2);
+}
+
+#hero p {
+    color: var(--panel-3);
+    margin-top: -10px;
+}
+
+#hero #hp-1 {
+    font-size: 1em;
+}
+
+#hero #hp-2 {
+    font-size: .8em;
+    color: var(--panel-4);
+}
+
+/* About styling */
+@media (max-width: 900px) {
+    #about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #about .content {
+        max-width: 90%;
+        padding-left: 0;
+    }
+
+    #about .skills-interests {
+        grid-template-columns: 1fr;
+    }
+}
+
+#about {
+    display: flex;
+
+    height: 100%;
+    width: 100%;
+}
+
+#about .info {
+    margin-top: 20px;
+}
+
+#about .about-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+#about .info h2 {
+    color: var(--text);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-links img {
+    width: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+#about .content {
+    padding-left: 50px;
+    padding-top: 50px;
+    max-width: 60%;
+}
+
+#about .content p span {
+    color: var(--text);
+}
+
+#about .skills-interests {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 35px;
+}
+
+#about .content button {
+    background-color: var(--panel-2); /* Primary green */
+    border: none;
+    color: var(--panel-3);
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#about .content button:hover {
+    background-color: var(--panel-3); /* Darker green on hover */
+    color: var(--panel);
+}
+
+/* Projects styling */
+#projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    margin-left: -75px;
+    margin-top: 20px;
+}
+
+#github-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    width: 90%;
+}
+
+.project-card {
+    background: var(--panel);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: .8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--text); /* Using orange for the hover highlight */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.github-link img {
+    width: 24px;
+    filter: invert(1); /* Makes the logo white */
+}
+
+.project-card h3 {
+    font-size: .9rem;
+    color: var(--text);
+}
+
+.project-card p {
+    font-size: 0.75rem;
+    color: var(--panel-3);
+    line-height: 1.6;
+}
+
+.card-footer {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #888;
+}
+
+.language::before {
+    content: "● ";
+    color: var(--muted); /* Indicator dot */
+}
+
+/* CTF Section */
+#ctf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+#ctf .ctf-desc p span {
+    color: var(--text);
+}
+
+#ctf h2 {
+    color: var(--text);
+}
+
+.flag::after {
+    content: "{something_worth}";
+    display: none;
+}
+
+.hidden-btn {
+    opacity: .01;
+    cursor: pointer;
+}
+
+#ctf .ctf-desc {
+    height: 80%;
+    width: clamp(280px, 32vw, 500px);
+
+    border-radius: 30px;
+    background: var(--panel);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -200px;
+}
+
+#ctf .ctf-desc button {
+    background-color: var(--panel-2); /* Primary green */
+    border: none;
+    color: var(--panel-3);
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#ctf .ctf-desc button:hover {
+    background-color: var(--panel-3); /* Darker green on hover */
+    color: var(--panel);
+}
+
+#ctf .ctf-desc input {
+    width: 100%;
+    padding: 12px 0; /* remove side padding for cleaner underline */
+    margin: 8px 0;
+
+    background: transparent;      /* no background */
+    border: none;                 /* remove all borders */
+    border-bottom: 2px solid #444; /* only bottom border */
+
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--text);
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#ctf .ctf-desc input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--panel-4); /* your orange accent */
+
+    /* subtle glow */
+    box-shadow: 0 4px 6px -4px var(--panel-2);
+}
+
+#ctf .ctf-desc input::placeholder {
+    color: var(--panel-2);
+}
+
+#ctf .ctf-challenges {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(20px, 1vw, 50px);
+
+    height: 70%;
+    padding-top: 50px;
+    width: clamp(300px, 45vw, 900px);
+}
+
+#locked {
+    opacity: .5;
+}
+
+#ctf .ctf-challenges .challenge-card {
+    background: var(--panel-2);
+    border-radius: 16px;
+    padding: 20px;
+    color: var(--panel-4);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+
+    height: 100px;
+    width: 175px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border: #9ca18f 1px solid;
+}
