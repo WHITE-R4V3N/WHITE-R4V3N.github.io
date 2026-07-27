@@ -126,12 +126,40 @@ img {
     gap: 8px;
 }
 
+.emphasize {
+    font-family: 'NewRocker', cursive;
+    font-size: 22px;
+}
+
 .quick-links {
     grid-row: span 6 / span 6;
     grid-column-start: 1;
     grid-row-start: 1;
 
-    border: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+
+    padding: 2px;
+}
+
+.quick-links p {
+    padding: 3px;   
+}
+
+.links-title {
+    font-family: 'Iceberg', sans-serif;
+    font-size: 22px;
+    color: var(--bg-light);
+    background: var(--bg-dark);
+
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.main-links a {
+    text-decoration: none;
+    color: var(--accent-red);
 }
 
 .about {
@@ -140,7 +168,8 @@ img {
     grid-column-start: 2;
     grid-row-start: 1;
 
-    border: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 
     padding: 20px;
 }
@@ -154,19 +183,20 @@ img {
 .about img {
     width: 250px;
     height: auto;
-    border-radius: 50%;
+    border-radius: 25%;
     object-fit: cover;
 
     float: left;
     padding-right: 20px;
     padding-bottom: 10px;
+
+    margin-left: -10px;
+    padding-right: 25px;
 }
 
 .about_link {
     text-decoration: none;
     color: var(--ink-soft);
-    justify-self: end;
-
 }
 
 .projects {
@@ -175,6 +205,26 @@ img {
     grid-row-start: 1;
 
     border: 1px solid var(--border);
+    border-top: none;
+}
+
+.projects_title {
+    font-family: 'Iceberg', sans-serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+
+    padding: 5px;
+}
+
+.projects p {
+    padding: 5px;
+}
+
+.projects_link {
+    text-decoration: none;
+    color: var(--ink-soft);
+
+    padding-left: 5px;
 }
 
 .mtg-favourite {
@@ -182,7 +232,18 @@ img {
     grid-column-start: 2;
     grid-row-start: 4;
 
-    border: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.mtg-favourite img {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 25px;
+
+    margin-top: 30px;
+    padding: 5px;
 }
 
 .mtg-article {
@@ -191,7 +252,28 @@ img {
     grid-column-start: 3;
     grid-row-start: 4;
 
-    border: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+}
+
+.mtg_title {
+    font-family: 'Iceberg', sans-serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+
+    padding: 5px;
+}
+
+.mtg-article p {
+    padding: 5px;
+}
+
+.mtg_link {
+    text-decoration: none;
+    color: var(--ink-soft);
+
+    padding-left: 5px;
 }
 
 .cyber-pond {
@@ -200,6 +282,50 @@ img {
     grid-row-start: 4;
 
     border: 1px solid var(--border);
+    border-bottom: none;
+}
+
+.cyber-pond p {
+    padding: 5px;
+}
+
+.cyber_link {
+    text-decoration: none;
+    color: var(--ink-soft);
+
+    padding-left: 5px;
+}
+
+.social-links {
+    justify-content: center;
+}
+
+.social-banner {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.social-banner img {
+    width: 50px;
+
+    float: left;
+}
+
+.social-banner .github {
+    width: 35px;
+
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.social-banner a {
+    text-decoration: none;
+    color: var(--accent-red);
+}
+
+.dashed {
+    border: 2px dotted var(--ink-soft);
 }
 
 /* Footer Styling */
@@ -209,4 +335,14 @@ footer {
 
 .archive-link {
     color: var(--ink);
+}
+
+.copyright {
+    background: var(--bg-dark);
+    color: var(--bg-light);
+
+    margin: 0;
+    padding: 5px;
+
+    border-radius: 5px;
 }
