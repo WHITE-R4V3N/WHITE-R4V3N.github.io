@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Daily Quack — an independent collection of notes, projects, and dispatches.">
+<title>The Daily Quack — About the Author</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Rye&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap');
+  :root {
+    --paper: #ead8aa;
+    --paper-light: #f3e6c5;
+    --paper-dark: #d8c18b;
+    --ink: #241d16;
+    --muted: #6c5a3e;
+    --red: #9c382b;
+    --rule: rgba(36,29,22,.8);
+    --serif: Georgia, "Times New Roman", serif;
+    --type: "Special Elite", "Courier New", monospace;
+    --mono: "DM Mono", "Courier New", monospace;
+    --display: "Rye", Georgia, serif;
+    --blackletter: "UnifrakturCook", "Old English Text MT", fantasy;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--ink); background: var(--paper);
+    background-image: radial-gradient(rgba(80,55,20,.10) .65px, transparent .65px);
+    background-size: 5px 5px;
+    font-family: var(--serif);
+  }
+  a { color: inherit; }
+  button, input, select { font: inherit; }
+  .page { width: min(1240px, calc(100% - 42px)); margin: 0 auto; }
+  .topline { border-top: 2px solid var(--ink); margin-top: 24px; }
+  .masthead { text-align: center; padding: 15px 0 10px; border-bottom: 2px solid var(--ink); }
+  .masthead-top { display:flex; justify-content:space-between; align-items:center; gap:14px; font: 11px var(--mono); text-transform:uppercase; letter-spacing:.12em; }
+  .masthead-title { display:flex; align-items:center; justify-content:center; gap: clamp(12px, 4vw, 54px); margin: 10px 0 5px; }
+  .masthead h1 { font: clamp(42px, 8vw, 88px)/.95 var(--blackletter); margin:0; letter-spacing:.01em; font-weight:700; }
+  .bird { width: clamp(36px, 6vw, 68px); height:auto; flex:none; }
+  .masthead-bottom { display:flex; justify-content:space-between; align-items:center; gap:10px; font: 11px var(--mono); text-transform:uppercase; letter-spacing:.08em; padding-top:10px; }
+  .masthead-bottom span:nth-child(2) { font-weight:500; }
+  .nav { display:flex; justify-content:center; gap:clamp(14px,3vw,36px); padding:13px 8px; border-bottom:1px solid var(--rule); font: 11px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  .nav a { text-decoration:none; border-bottom:1px solid transparent; padding-bottom:3px; }
+  .nav a:hover { border-color:var(--red); color:var(--red); }
+  .edition-strip { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:9px 0; border-bottom:3px double var(--ink); font: 10px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+  .edition-strip strong { color:var(--red); font-weight:500; }
+  .intro { display:grid; grid-template-columns: 1.35fr .65fr; gap:28px; padding:27px 0 25px; border-bottom:1px solid var(--rule); }
+  .eyebrow { font: 10px var(--mono); text-transform:uppercase; letter-spacing:.16em; color:var(--red); }
+  .intro h2 { font: clamp(32px,5vw,58px)/.98 var(--display); margin:10px 0 12px; font-weight:400; }
+  .intro p { font: 15px/1.65 var(--type); max-width:690px; margin:0; }
+  .ticket { border:1px solid var(--ink); padding:17px; position:relative; background:rgba(255,248,222,.28); box-shadow:4px 4px 0 rgba(36,29,22,.12); }
+  .ticket:before,.ticket:after { content:""; position:absolute; width:15px;height:15px;border-radius:50%;background:var(--paper); border:1px solid var(--ink); top:50%; transform:translateY(-50%); }
+  .ticket:before { left:-9px; border-left:0; }.ticket:after { right:-9px; border-right:0; }
+  .ticket-label { font:10px var(--mono); text-transform:uppercase; letter-spacing:.12em; border-bottom:1px dashed var(--ink); padding-bottom:9px; }
+  .ticket-author {font:20px var(--serif); letter-spacing:.12em; text-transform: uppercase;}
+  .ticket-number { font:42px var(--display); margin:10px 0 2px; }
+  .ticket p { font:12px/1.5 var(--type); margin:0 0 13px; }
+  .ticket a { display:inline-block; font:11px var(--mono); text-transform:uppercase; text-decoration:none; border:1px solid var(--ink); padding:8px 12px; background:var(--ink); color:var(--paper-light); }
+  .feature-image { position:relative; width:38%; border:5px double var(--ink); padding:7px; box-shadow:4px 5px 0 rgba(36,29,22,.12); float:left; margin-right:25px; margin-bottom:5px;}
+  .feature-image img { display:block; height:400px; width:auto; object-fit:fill; filter:sepia(15%) contrast(95%);}
+  .section-head { display:flex; align-items:end; justify-content:space-between; gap:15px; padding:20px 0 12px; border-bottom:3px double var(--ink); }
+  .section-head h3 { font: clamp(23px,3vw,34px) var(--display); margin:0; font-weight:400; }
+  .section-head small { font:10px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+  .section-body { font:14px var(--mono); letter-spacing:.1em; }
+  .tools { display:flex; gap:10px; align-items:center; padding:14px 0; border-bottom:1px solid var(--rule); flex-wrap:wrap; }
+  .search-wrap { flex:1 1 250px; position:relative; }
+  .search-wrap span { position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:17px; }
+  .search-wrap input { width:100%; background:rgba(255,248,222,.35); border:1px solid var(--ink); padding:11px 12px 11px 37px; color:var(--ink); outline:none; font:12px var(--mono); }
+  .search-wrap input:focus { box-shadow:3px 3px 0 var(--ink); }
+  .tools select { background:transparent; border:1px solid var(--ink); padding:10px 28px 10px 10px; color:var(--ink); font:11px var(--mono); }
+  .filters { display:flex; gap:7px; flex-wrap:wrap; padding:13px 0 18px; }
+  .filter { border:1px solid var(--ink); background:transparent; color:var(--ink); padding:7px 11px; font:10px var(--mono); text-transform:uppercase; letter-spacing:.07em; cursor:pointer; }
+  .filter:hover,.filter.active { background:var(--ink); color:var(--paper-light); }
+  .featured { display:grid; grid-template-columns: 1.1fr .9fr; border:1px solid var(--ink); margin:4px 0 24px; background:rgba(255,248,222,.22); }
+  .feature-art { min-height:300px; position:relative; overflow:hidden; display:grid; place-items:center; background:linear-gradient(135deg,#a88b5b,#e0c98f 55%,#806b49); border-right:1px solid var(--ink); }
+  .feature-art:before { content:""; position:absolute; inset:16px; border:1px solid rgba(36,29,22,.65); }
+  .feature-art:after { content:"SPECIAL EDITION"; position:absolute; bottom:28px; left:28px; font:11px var(--mono); letter-spacing:.18em; color:#241d16; }
+  .sunburst { width:190px;height:190px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center; transform:rotate(-12deg); box-shadow:0 0 0 12px rgba(36,29,22,.08),0 0 0 24px rgba(36,29,22,.05); }
+  .sunburst span { font:42px var(--blackletter); text-align:center; line-height:.9; }
+  .feature-copy { padding:clamp(20px,3vw,35px); display:flex; flex-direction:column; justify-content:center; }
+  .feature-copy h4 { font:clamp(27px,3.6vw,43px)/1.03 var(--display); margin:10px 0 12px; font-weight:400; }
+  .feature-copy p { font:13px/1.65 var(--type); margin:0 0 18px; }
+  .meta { font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .read-link { align-self:flex-start; text-decoration:none; border-bottom:1px solid var(--red); padding-bottom:4px; font:11px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  .read-link:hover { color:var(--red); }
+  .rack { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:17px 0 30px; }
+  .article { border:1px solid var(--ink); display:flex; flex-direction:column; min-width:0; background:rgba(255,248,222,.18); transition:transform .18s, box-shadow .18s; }
+  .article:hover { transform:translate(-2px,-2px); box-shadow:4px 4px 0 rgba(36,29,22,.22); }
+  .article-art { min-height:145px; display:grid; place-items:center; border-bottom:1px solid var(--ink); position:relative; overflow:hidden; background:var(--art,#c9b27d); }
+  .article-art .issue { font:clamp(35px,5vw,58px) var(--blackletter); opacity:.82; transform:rotate(-8deg); }
+  .article-art .stamp { position:absolute; right:10px; bottom:9px; border:1px solid var(--ink); padding:4px 6px; font:9px var(--mono); text-transform:uppercase; background:rgba(234,216,170,.65); }
+  .article-copy { padding:15px; display:flex; flex-direction:column; flex:1; }
+  .article h4 { font:22px/1.08 var(--display); margin:8px 0 9px; font-weight:400; }
+  .article p { font:12px/1.55 var(--type); margin:0 0 15px; flex:1; }
+  .article-foot { display:flex; justify-content:space-between; align-items:center; gap:8px; border-top:1px dashed var(--ink); padding-top:10px; margin-top:5px; }
+  .article-foot span { font:9px var(--mono); text-transform:uppercase; color:var(--muted); }
+  .empty { display:none; padding:30px; border:1px dashed var(--ink); text-align:center; font:13px var(--type); }
+  .bottom-notice { display:flex; justify-content:space-between; gap:16px; border-top:3px double var(--ink); border-bottom:1px solid var(--ink); padding:12px 0; font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  .ticker { overflow:hidden; white-space:nowrap; border-bottom:2px solid var(--ink); padding:9px 0; font:11px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+  .ticker span { display:inline-block; animation:scroll 24s linear infinite; }
+  .title_image{max-width: 125px; height: auto;}
+  @keyframes scroll { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+  footer { display:flex; justify-content:space-between; gap:16px; padding:22px 0 30px; font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  @media(max-width:760px) {
+    .page{width:min(100% - 26px,600px)} .masthead-top span:last-child{display:none}
+    .intro{grid-template-columns:1fr;gap:16px}.ticket{max-width:330px}
+    .featured{grid-template-columns:1fr}.feature-art{min-height:220px;border-right:0;border-bottom:1px solid var(--ink)}
+    .rack{grid-template-columns:repeat(2,1fr)} .nav{gap:13px;flex-wrap:wrap}
+  }
+  @media(max-width:480px) {
+    .masthead h1{font-size:39px}.bird{width:32px}.masthead-bottom{font-size:9px}
+    .rack{grid-template-columns:1fr}.article-art{min-height:170px}
+    .edition-strip{font-size:8px}.bottom-notice,footer{font-size:9px}
+  }
+  @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topline"></div>
+  <header class="masthead">
+    <div class="masthead-top"><span>Independent press · Est. 2026</span><span>Curiosity, printed daily</span></div>
+    <div class="masthead-title">
+      <h1>The Daily</h1>
+      <!--<svg class="bird" viewBox="0 0 100 100" aria-label="Flying bird emblem" role="img"><path fill="#241d16" d="M4 30c17-4 19-18 38-14 12 2 17 12 30 11 10-1 16-7 24-4-9 8-18 11-25 17 8 9 11 23 4 34-2-10-8-15-16-18-5 16-14 25-27 30 7-14 7-25 1-36C22 48 13 43 4 30z"/></svg>-->
+      <img class="title_image" src="../../images/the_daily_quack.png" alt="TheDailyQuack Logo" class="logo">
+      <h1>Quack</h1>
+    </div>
+    <div class="masthead-bottom"><span>Vol. 2, No. 01</span><span>The independent newsstand</span><span id="today">November 17, 2026</span></div>
+  </header>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="../../index.html">Back to the Newsstand</a><a href="#summary">Summary</a><a href="#start">Start</a><a href="#project_hellscape">Project Hellscape</a><a href="#now">Now</a>
+  </nav>
+  <div class="edition-strip"><span>Now serving: <strong>About the Author</strong></span><span></span><span>Printed on the internet</span></div>
+
+  <section class="intro" id="about">
+    <div>
+      <h2>WHO IS THE AUTHOR? WHAT DOES SHE DO?<br></h2>
+      <p>CATEGORY: SPECIAL REPORT</p>
+    </div>
+    <aside class="ticket">
+      <div class="ticket-label">NOVEMBER 17, 2026 · Issue # 000</div>
+      <div class="ticket-author">WRITTEN BY:<br>EMMA GILLESPIE</div>
+    </aside>
+  </section>
+  <div class="ticker"><span>✦ SHE/HER &nbsp; ✦ &nbsp; INFJ &nbsp; ✦ &nbsp; NERD &nbsp; ✦ &nbsp; Cyber Security Analyst &nbsp; ✦ &nbsp; Python &nbsp; ✦
+     &nbsp; Godot &nbsp; ✦ &nbsp; Bash &nbsp; ✦ &nbsp; Rust &nbsp; ✦ &nbsp; HTML &nbsp; ✦ &nbsp; CSS &nbsp; ✦ &nbsp; PHP &nbsp; ✦ &nbsp; JavaScript &nbsp; ✦
+      &nbsp; Java &nbsp; ✦ &nbsp; SQL &nbsp; ✦ &nbsp; Assembly &nbsp; ✦ &nbsp; C# &nbsp; ✦ &nbsp; C &nbsp; ✦ &nbsp; Visual Basic &nbsp; ✦
+  </span></div>
+  <section id="section-1">
+    <article class="section-1">
+        <div class="feature-image">
+            <img src="../../images/hero_bw.png" alt="profile image">
+        </div>
+        <div class="section-summary" id="summary">
+            <div class="section-head"><h3>Summary</h3></div>
+            <div class="section-body">
+                <p>
+                    I was a student at SAIT until graduating with a diploma in Information Security Systems (ISS) in August 2025. I was looking for work until a year later I eventually landed my dream career starting job as a security analyst.
+                    I started learning about coding and computers at the age of twelve where I learned Python Object Oriented Programming from a book (yes a litteral book). Now I spend my time creating fun projects, working on personal skills, exploring the wilds, and developing my skillset.
+                    <br><br>
+                    Follow along the journey of how I got to be who I am today.
+                </p>
+            </div>
+        </div>
+    </article>
+    <article class="section-2" id="start">
+        <div class="section-head"><h3>All Good Stories Start Somewhere</h3></div>
+        <div class="section-body">
+            <p>
+                I had walked into a book shop with my Dad and was looking around. I had a list of books I was looking for in the kids section but to no avail. We were mainly there to get a
+                Christmas present for my mom. As I was looking around I stumbled on the reference section. I flipped through a couple books until I landed on one: Idiots Guide Beginning Programming
+                by Matt Telles. My Dad came over and I begged him to get the book for me. I made a promise to read it front to back, and to do all the programming examples it had inside.
+                Looking back it is crazy to see how one book changed my future so drastically. If I never got this book would I be where I am today? I don't think so as this book had opened
+                a door to a world just beneath my fingertips.
+            </p>
+            <br>
+            <p>
+                Junior High and High School (Grades 7-12) I took all available computer science courses. I was a little dissapointed with Junior High as they were just typing tests
+                and using Scratch for coding. I felt limited on what I could do and I wanted to do more. I did SAIT summer camps where I learned to make games using Dreamweaver IDE
+                and build websites using HTML, CSS, JavaScript. Honeslty, this is probably where my hatred towards JavaScript started but years later I would find a language so much worse.
+                Its distant cousin and my least favourite language (sorry) of all time Java...
+            </p>
+            <br>
+            <p>
+                High School was where my self taught programming came in handy. We started to touch actual programming languages and IDE's in a school setting. During this time I had
+                flipped between Web, Software and Game development. Grade 10 and 11 we were using JavaScript to create browser based games. Grade 12 we were using Java to create software.
+                My final project was essentailly Uber (this was when uber first came out around this time) and I called it OnlineCabs. It was an app that would help solve getting a cab
+                for my city easier. Honestly it was a lot of fun and it used Java, SQL, HTML, and a payment gateway.
+            </p>
+        </div>
+    </article>
+    <article class="section-2" id="project_hellscape">
+        <div class="section-head"><h3>The Project Hellscape</h3></div>
+        <div class="feature-image">
+            <img src="../../images/Rubber_Duck_bw.png" alt="profile image">
+        </div>
+        <div class="section-body">
+            <p>
+                Do you know what goes into a project? Well during my Junior High and High School I was working through endless slop videos on YouTube (at the time they had
+                value to me) just working on personal fun projects. I would search for something that would keep my brain engaged. This was again before AI and I was using Youtube
+                or programming books to learn. The old school method but they were still mostly object oriented programming. I wanted to find a way to break free from creating another
+                knock off social media following the same video thousands of other people had watched.
+            </p>
+            <br>
+            <p>
+                After graduating High School I was doing upgradding at a local University and I took a Visual Basic course while there. During that course I helped the professor with
+                helping students during lab time and working on a side project. I wanted to take Stack Overflow and create a software application for it. I used SQl and Visual Basic to
+                create an app based on the premise of De-Ducking and Stack Overflow. A debugging platform that I was able to post questions, answers, seperate profiles, and it had 
+                a little duck that I was able to read my code line by line to while I thought about what it should do. The project came out to be a thousand plus lines of code. I was 
+                happy with my project and content with the amount of work I had put in.
+            </p>
+            <br>
+            <p>
+                I still continued to do more slop projects but I was starting to break free from the project hellscape. Where everyone is doing the same project following the same videos 
+                and creating content as if they were their own ideas. I think that is where my voice and want to create my own channel came from.
+            </p>
+        </div>
+    </article>
+    <article class="section-2" id="now">
+        <div class="section-head"><h3>Where I am at Now</h3></div>
+        <div class="section-body">
+            <p>
+                Well now of days I have graduated SAIT and have a diploma in Information Security Systems. I have a Youtube channel I post very infrequently to. And I am working 
+                towards getting multiple certifications to futher develop my knowledge (or getting ones I have the knowledge for already). I working on my personal growth just as 
+                much as my development skills. The beauty of getting older is you find a job to help pay to expand your growth oppotunities.
+            </p>
+        </div>
+    </article>
+  </section>
+  <div class="bottom-notice"><span>Have a story to tell? Make something.</span><span>Independent by nature · Curious by design</span></div>
+  <div class="ticker"><span>✦ EXTRA! EXTRA! &nbsp; New ideas arriving daily &nbsp; ✦ &nbsp; Take your time, read widely &nbsp; ✦ &nbsp; Support independent corners of the internet &nbsp; ✦ &nbsp;</span></div>
+  <footer><span>© 2026 The Daily Quack</span><span>All the news that's fit to click.</span><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a></footer>
+</div>
+</body>
+</html>

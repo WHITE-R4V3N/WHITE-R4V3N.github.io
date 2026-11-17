@@ -1,123 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Emma Gillespie</title>
-        <link rel="stylesheet" href="styles/main.css">
-    </head>
-    <body>
-        <nav id="navbar">
-            <ul>
-                <li data-index="0" class="active">Home</li>
-                <li data-index="1">About</li>
-                <li data-index="2">Projects</li>
-                <li data-index="3">CTF</li>
-            </ul>
-        </nav>
-        <div id="app">
-            <!-- Hero Section -->
-            <section class="panel active" id="hero">
-                <div class="content">
-                    <h1>Emma Gillespie</h1>
-                    <p id="hp-1">Information Security Systems Graduate</p>
-                    <p id="hp-2">I am passionate about cybersecurity and software development. Focusing on learning through hands on projects and certifications. I have a second page you can access by clicking <a href="./new_index.html" target="_blank">HERE</a>.</p>
-                </div>
-                <img src="./images/hero (3).png" alt="Hero Image">
-            </section>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Daily Quack — an independent collection of notes, projects, and dispatches.">
+<title>The Daily Quack — The Newsstand</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Rye&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap');
+  :root {
+    --paper: #ead8aa;
+    --paper-light: #f3e6c5;
+    --paper-dark: #d8c18b;
+    --ink: #241d16;
+    --muted: #6c5a3e;
+    --red: #9c382b;
+    --rule: rgba(36,29,22,.8);
+    --serif: Georgia, "Times New Roman", serif;
+    --type: "Special Elite", "Courier New", monospace;
+    --mono: "DM Mono", "Courier New", monospace;
+    --display: "Rye", Georgia, serif;
+    --blackletter: "UnifrakturCook", "Old English Text MT", fantasy;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--ink); background: var(--paper);
+    background-image: radial-gradient(rgba(80,55,20,.10) .65px, transparent .65px);
+    background-size: 5px 5px;
+    font-family: var(--serif);
+  }
+  a { color: inherit; }
+  button, input, select { font: inherit; }
+  .page { width: min(1240px, calc(100% - 42px)); margin: 0 auto; }
+  .topline { border-top: 2px solid var(--ink); margin-top: 24px; }
+  .masthead { text-align: center; padding: 15px 0 10px; border-bottom: 2px solid var(--ink); }
+  .masthead-top { display:flex; justify-content:space-between; align-items:center; gap:14px; font: 11px var(--mono); text-transform:uppercase; letter-spacing:.12em; }
+  .masthead-title { display:flex; align-items:center; justify-content:center; gap: clamp(12px, 4vw, 54px); margin: 10px 0 5px; }
+  .masthead h1 { font: clamp(42px, 8vw, 88px)/.95 var(--blackletter); margin:0; letter-spacing:.01em; font-weight:700; }
+  .bird { width: clamp(36px, 6vw, 68px); height:auto; flex:none; }
+  .masthead-bottom { display:flex; justify-content:space-between; align-items:center; gap:10px; font: 11px var(--mono); text-transform:uppercase; letter-spacing:.08em; padding-top:10px; }
+  .masthead-bottom span:nth-child(2) { font-weight:500; }
+  .nav { display:flex; justify-content:center; gap:clamp(14px,3vw,36px); padding:13px 8px; border-bottom:1px solid var(--rule); font: 11px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  .nav a { text-decoration:none; border-bottom:1px solid transparent; padding-bottom:3px; }
+  .nav a:hover { border-color:var(--red); color:var(--red); }
+  .edition-strip { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:9px 0; border-bottom:3px double var(--ink); font: 10px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+  .edition-strip strong { color:var(--red); font-weight:500; }
+  .intro { display:grid; grid-template-columns: 1.35fr .65fr; gap:28px; padding:27px 0 25px; border-bottom:1px solid var(--rule); }
+  .eyebrow { font: 10px var(--mono); text-transform:uppercase; letter-spacing:.16em; color:var(--red); }
+  .intro h2 { font: clamp(32px,5vw,58px)/.98 var(--display); margin:10px 0 12px; font-weight:400; }
+  .intro p { font: 15px/1.65 var(--type); max-width:690px; margin:0; }
+  .ticket { border:1px solid var(--ink); padding:17px; position:relative; background:rgba(255,248,222,.28); box-shadow:4px 4px 0 rgba(36,29,22,.12); }
+  .ticket:before,.ticket:after { content:""; position:absolute; width:15px;height:15px;border-radius:50%;background:var(--paper); border:1px solid var(--ink); top:50%; transform:translateY(-50%); }
+  .ticket:before { left:-9px; border-left:0; }.ticket:after { right:-9px; border-right:0; }
+  .ticket-label { font:10px var(--mono); text-transform:uppercase; letter-spacing:.12em; border-bottom:1px dashed var(--ink); padding-bottom:9px; }
+  .ticket-number { font:42px var(--display); margin:10px 0 2px; }
+  .ticket p { font:12px/1.5 var(--type); margin:0 0 13px; }
+  .ticket a { display:inline-block; font:11px var(--mono); text-transform:uppercase; text-decoration:none; border:1px solid var(--ink); padding:8px 12px; background:var(--ink); color:var(--paper-light); }
+  .section-head { display:flex; align-items:end; justify-content:space-between; gap:15px; padding:20px 0 12px; border-bottom:3px double var(--ink); }
+  .section-head h3 { font: clamp(23px,3vw,34px) var(--display); margin:0; font-weight:400; }
+  .section-head small { font:10px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+  .tools { display:flex; gap:10px; align-items:center; padding:14px 0; border-bottom:1px solid var(--rule); flex-wrap:wrap; }
+  .search-wrap { flex:1 1 250px; position:relative; }
+  .search-wrap span { position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:17px; }
+  .search-wrap input { width:100%; background:rgba(255,248,222,.35); border:1px solid var(--ink); padding:11px 12px 11px 37px; color:var(--ink); outline:none; font:12px var(--mono); }
+  .search-wrap input:focus { box-shadow:3px 3px 0 var(--ink); }
+  .tools select { background:transparent; border:1px solid var(--ink); padding:10px 28px 10px 10px; color:var(--ink); font:11px var(--mono); }
+  .filters { display:flex; gap:7px; flex-wrap:wrap; padding:13px 0 18px; }
+  .filter { border:1px solid var(--ink); background:transparent; color:var(--ink); padding:7px 11px; font:10px var(--mono); text-transform:uppercase; letter-spacing:.07em; cursor:pointer; }
+  .filter:hover,.filter.active { background:var(--ink); color:var(--paper-light); }
+  .featured { display:grid; grid-template-columns: 1.1fr .9fr; border:1px solid var(--ink); margin:4px 0 24px; background:rgba(255,248,222,.22); }
+  .feature-art { min-height:300px; position:relative; overflow:hidden; display:grid; place-items:center; background:linear-gradient(135deg,#a88b5b,#e0c98f 55%,#806b49); border-right:1px solid var(--ink); }
+  .feature-art:before { content:""; position:absolute; inset:16px; border:1px solid rgba(36,29,22,.65); }
+  .feature-art:after { content:"SPECIAL EDITION"; position:absolute; bottom:28px; left:28px; font:11px var(--mono); letter-spacing:.18em; color:#241d16; }
+  .sunburst { width:190px;height:190px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center; transform:rotate(-12deg); box-shadow:0 0 0 12px rgba(36,29,22,.08),0 0 0 24px rgba(36,29,22,.05); }
+  .sunburst span { font:42px var(--blackletter); text-align:center; line-height:.9; }
+  .feature-copy { padding:clamp(20px,3vw,35px); display:flex; flex-direction:column; justify-content:center; }
+  .feature-copy h4 { font:clamp(27px,3.6vw,43px)/1.03 var(--display); margin:10px 0 12px; font-weight:400; }
+  .feature-copy p { font:13px/1.65 var(--type); margin:0 0 18px; }
+  .meta { font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .read-link { align-self:flex-start; text-decoration:none; border-bottom:1px solid var(--red); padding-bottom:4px; font:11px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  .read-link:hover { color:var(--red); }
+  .rack { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:17px 0 30px; }
+  .article { border:1px solid var(--ink); display:flex; flex-direction:column; min-width:0; background:rgba(255,248,222,.18); transition:transform .18s, box-shadow .18s; }
+  .article:hover { transform:translate(-2px,-2px); box-shadow:4px 4px 0 rgba(36,29,22,.22); }
+  .article-art { min-height:145px; display:grid; place-items:center; border-bottom:1px solid var(--ink); position:relative; overflow:hidden; background:var(--art,#c9b27d); }
+  .article-art .issue { font:clamp(35px,5vw,58px) var(--blackletter); opacity:.82; transform:rotate(-8deg); }
+  .article-art .stamp { position:absolute; right:10px; bottom:9px; border:1px solid var(--ink); padding:4px 6px; font:9px var(--mono); text-transform:uppercase; background:rgba(234,216,170,.65); }
+  .article-copy { padding:15px; display:flex; flex-direction:column; flex:1; }
+  .article h4 { font:22px/1.08 var(--display); margin:8px 0 9px; font-weight:400; }
+  .article p { font:12px/1.55 var(--type); margin:0 0 15px; flex:1; }
+  .article-foot { display:flex; justify-content:space-between; align-items:center; gap:8px; border-top:1px dashed var(--ink); padding-top:10px; margin-top:5px; }
+  .article-foot span { font:9px var(--mono); text-transform:uppercase; color:var(--muted); }
+  .empty { display:none; padding:30px; border:1px dashed var(--ink); text-align:center; font:13px var(--type); }
+  .bottom-notice { display:flex; justify-content:space-between; gap:16px; border-top:3px double var(--ink); border-bottom:1px solid var(--ink); padding:12px 0; font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  .ticker { overflow:hidden; white-space:nowrap; border-bottom:2px solid var(--ink); padding:9px 0; font:11px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+  .ticker span { display:inline-block; animation:scroll 24s linear infinite; }
+  .title_image{max-width: 125px; height: auto;}
+  @keyframes scroll { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+  footer { display:flex; justify-content:space-between; gap:16px; padding:22px 0 30px; font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+  @media(max-width:760px) {
+    .page{width:min(100% - 26px,600px)} .masthead-top span:last-child{display:none}
+    .intro{grid-template-columns:1fr;gap:16px}.ticket{max-width:330px}
+    .featured{grid-template-columns:1fr}.feature-art{min-height:220px;border-right:0;border-bottom:1px solid var(--ink)}
+    .rack{grid-template-columns:repeat(2,1fr)} .nav{gap:13px;flex-wrap:wrap}
+  }
+  @media(max-width:480px) {
+    .masthead h1{font-size:39px}.bird{width:32px}.masthead-bottom{font-size:9px}
+    .rack{grid-template-columns:1fr}.article-art{min-height:170px}
+    .edition-strip{font-size:8px}.bottom-notice,footer{font-size:9px}
+  }
+  @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topline"></div>
+  <header class="masthead">
+    <div class="masthead-top"><span>Independent press · Est. 2026</span><span>Curiosity, printed daily</span></div>
+    <div class="masthead-title">
+      <h1>The Daily</h1>
+      <!--<svg class="bird" viewBox="0 0 100 100" aria-label="Flying bird emblem" role="img"><path fill="#241d16" d="M4 30c17-4 19-18 38-14 12 2 17 12 30 11 10-1 16-7 24-4-9 8-18 11-25 17 8 9 11 23 4 34-2-10-8-15-16-18-5 16-14 25-27 30 7-14 7-25 1-36C22 48 13 43 4 30z"/></svg>-->
+      <img class="title_image" src="images/the_daily_quack.png" alt="TheDailyQuack Logo" class="logo">
+      <h1>Quack</h1>
+    </div>
+    <div class="masthead-bottom"><span>Vol. 2, No. 01</span><span>The independent newsstand</span><span id="today">November 16, 2026</span></div>
+  </header>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#latest">Latest editions</a><a href="#departments">Departments</a><a href="#featured">Editor's pick</a><a href="#about">About the Author</a>
+  </nav>
+  <div class="edition-strip"><span>Now serving: <strong>Ideas worth keeping</strong></span><span>Browse the shelves ↓</span><span>Printed on the internet</span></div>
 
-            <!-- About Section -->
-            <section class="panel" id="about">
-                <div class="info">
-                    <img class="about-img" src="./images/about.jpeg" alt="About Image">
-                    <h2>Emma Gillespie</h2>
-                    <h4>Information Security Systems Graduate</h4>
-                    <!-- Icons and Links -->
-                    <ul class="social-links">
-                        <a href="https://github.com/WHITE-R4V3N" target="_blank"><img src="https://cdn.simpleicons.org/github/9ca18f"/></a>
-                        <a href="https://www.instagram.com/the_cyber_pond/" target="_blank"><img src="https://cdn.simpleicons.org/instagram/9ca18f"/></a>
-                        <a href="https://www.youtube.com/@duck-in-shell" target="_blank"><img src="https://cdn.simpleicons.org/youtube/9ca18f"/></a>
-                    </ul>
-                </div>
-                <div class="content">
-                    <h3>About Me</h3>
-                    <p><span>Hi, I'm Emma!</span> I recently graduated Information Security Systems at SAIT and I am eager to kickstart my career in cybersecurity. I have a strong passion for learning and am constantly seeking out new challenges to expand my knowledge and skills. I am particularly interested in penetration testing, vulnerability assessment, and secure software development. I am excited to apply my skills and knowledge to real-world scenarios and contribute to the field of cybersecurity.</p>
-                    <a href="./documents/2026-04-14_resume.pdf" target="_blank" download>
-                        <button>Download CV</button>
-                    </a>
-                    <div class="skills-interests">
-                        <div class="skills">
-                            <h4>Skills</h4>
-                            <ul>
-                                <li>Penetration Testing</li>
-                                <li>Vulnerability Assessment</li>
-                                <li>Scripting</li>
-                                <li>Automation</li>
-                                <li>Artificial Intelligence</li>
-                            </ul>
-                        </div>
-                        <div class="interests">
-                            <h4>Interests</h4>
-                            <ul>
-                                <li>Cybersecurity Capture the Flag</li>
-                                <li>Hiking/Backpacking</li>
-                                <li>Travel</li>
-                                <li>Reading</li>
-                                <li>Golfing</li>
-                                <li>Conferences</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  <section class="intro" id="about">
+    <div>
+      <div class="eyebrow">Welcome, curious reader</div>
+      <h2>Step up to the stand.<br>Find something worth reading.</h2>
+      <p>A little corner of the internet for projects, experiments, rabbit holes and things learned along the way. Take a look through the latest editions, or search the shelves for something particular.</p>
+    </div>
+    <aside class="ticket">
+      <div class="ticket-label">Your reader's pass · No. 001</div>
+      <div class="ticket-number">FREE</div>
+      <p>One curious mind. Unlimited browsing. No subscription required.</p>
+      <a href="#latest">Browse today's papers →</a>
+    </aside>
+  </section>
 
-            <!-- Projects Section -->
-            <section class="panel" id="projects">
-                <div id="github-projects"></div>
-            </section>
+  <section id="featured">
+    <div class="section-head"><h3>Front Featured</h3><small>Editor's selection · 01</small></div>
+    <article class="featured">
+      <div class="feature-art" aria-label="Decorative special edition illustration">
+        <div class="sunburst"><span>ABOUT<br>THE<br>AUTHOR</span></div>
+      </div>
+      <div class="feature-copy">
+        <div class="eyebrow">Special report · About the Author</div>
+        <h4>Who is the Author? What does she do?</h4>
+        <div class="meta">By The Editor &nbsp;·&nbsp; 8 min read</div>
+        <p>A dispatch on who I am, what I have done, and where I want to go. From playing Magic: The Gathering to learning 18 programming languages come find out a little more about me.</p>
+        <a class="read-link" href="articles/special_reports/about-the-author.html">Read the feature →</a>
+      </div>
+    </article>
+    <!-- Add another here for a featured article. -->
+  </section>
 
-            <!-- CTF Section -->
-            <section class="panel" id="ctf">
-                <div class="ctf-desc">
-                    <h2>Mini CTF Challenges</h2>
-                    <p>Can you find all the flags?</p>
+  <section id="latest">
+    <div class="section-head"><h3>Browse the latest editions</h3><small id="resultCount">06 papers on the rack</small></div>
+    <div class="tools">
+      <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search headlines, subjects, or keywords…" aria-label="Search articles"></label>
+      <select id="sort" aria-label="Sort articles"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="az">Title A–Z</option></select>
+    </div>
+    <div class="filters" id="departments" aria-label="Filter by department">
+      <button class="filter active" data-category="All">All editions</button>
+      <button class="filter" data-category="Cybersecurity">Cybersecurity</button>
+      <button class="filter" data-category="Development">Development</button>
+      <button class="filter" data-category="Projects">Projects</button>
+      <button class="filter" data-category="Gaming">Gaming</button>
+      <button class="filter" data-category="Opinion">Opinion</button>
+    </div>
+    <div class="rack" id="articleRack">
+      <!-- These were just to see what it would look like. We can add the actual articles here now.
+      <article class="article" data-title="Building a local AI assistant" data-category="Projects" data-date="2026-11-12" data-search="local ai assistant offline models python">
+        <div class="article-art" style="--art:#c3a979"><span class="issue">LOCAL<br>AI</span><span class="stamp">Project notes</span></div>
+        <div class="article-copy"><div class="eyebrow">Projects · 12 Nov 2026</div><h4>Building a local AI assistant</h4><p>Notes from the workbench: bringing a private, locally hosted assistant to life, one component at a time.</p><div class="article-foot"><span>6 min read</span><a class="read-link" href="articles/local-ai-assistant.html">Open edition →</a></div></div>
+      </article>
+      <article class="article" data-title="A practical introduction to threat hunting" data-category="Cybersecurity" data-date="2026-11-08" data-search="security soc siem logs detection threat hunting">
+        <div class="article-art" style="--art:#b7a17c"><span class="issue">TRACE<br>THE<br>SIGNAL</span><span class="stamp">Field guide</span></div>
+        <div class="article-copy"><div class="eyebrow">Cybersecurity · 08 Nov 2026</div><h4>A practical introduction to threat hunting</h4><p>Following the clues in system logs, asking better questions, and learning to spot activity that deserves a closer look.</p><div class="article-foot"><span>9 min read</span><a class="read-link" href="articles/threat-hunting.html">Open edition →</a></div></div>
+      </article>
+      <article class="article" data-title="Magic: The Gathering — a cardboard universe" data-category="Gaming" data-date="2026-11-03" data-search="magic gathering mtg trading card game">
+        <div class="article-art" style="--art:#b99a76"><span class="issue">THE<br>GATHERING</span><span class="stamp">Leisure & play</span></div>
+        <div class="article-copy"><div class="eyebrow">Gaming · 03 Nov 2026</div><h4>Magic: The Gathering — a cardboard universe</h4><p>A look at the strategy, collecting, community and wonderfully complicated hobby behind the cards.</p><div class="article-foot"><span>5 min read</span><a class="read-link" href="articles/magic-the-gathering.html">Open edition →</a></div></div>
+      </article>
+      <article class="article" data-title="The little details that make a good developer setup" data-category="Development" data-date="2026-10-27" data-search="developer workstation tools terminal keyboard workflow">
+        <div class="article-art" style="--art:#c5b58b"><span class="issue">AT THE<br>DESK</span><span class="stamp">Workshop</span></div>
+        <div class="article-copy"><div class="eyebrow">Development · 27 Oct 2026</div><h4>The little details of a good developer setup</h4><p>Keyboards, terminals, tools and small quality-of-life improvements that make time at the desk more enjoyable.</p><div class="article-foot"><span>4 min read</span><a class="read-link" href="articles/developer-setup.html">Open edition →</a></div></div>
+      </article>
+      <article class="article" data-title="Making things just to see if you can" data-category="Opinion" data-date="2026-10-19" data-search="indie maker creativity learning experiments">
+        <div class="article-art" style="--art:#c6a77e"><span class="issue">MAKE<br>MORE</span><span class="stamp">Editorial</span></div>
+        <div class="article-copy"><div class="eyebrow">Opinion · 19 Oct 2026</div><h4>Making things just to see if you can</h4><p>On side projects, unfinished experiments, learning in public, and why curiosity is a perfectly good reason to start.</p><div class="article-foot"><span>3 min read</span><a class="read-link" href="articles/making-things.html">Open edition →</a></div></div>
+      </article>
+      <article class="article" data-title="A tiny homelab with big ambitions" data-category="Cybersecurity" data-date="2026-10-11" data-search="homelab raspberry pi linux docker lab">
+        <div class="article-art" style="--art:#a99b77"><span class="issue">HOME<br>LAB</span><span class="stamp">From the bench</span></div>
+        <div class="article-copy"><div class="eyebrow">Cybersecurity · 11 Oct 2026</div><h4>A tiny homelab with big ambitions</h4><p>Repurposed hardware, a few small machines, and a home environment for learning how systems behave.</p><div class="article-foot"><span>7 min read</span><a class="read-link" href="articles/tiny-homelab.html">Open edition →</a></div></div>
+      </article>
+      -->
+    </div>
+    <div class="empty" id="empty">No editions found on that shelf. Try another search or department.</div>
+  </section>
 
-                    <div class="challenge">
-                        <p>Find <span>4 hidden flags</span> across this page.</p>
-                        <p>Combine all the words in the {} to form the final flag!<br>(flag{each_flag_piece})</p>
-                        <input id="flagInput" placeholder="Enter the final flag"/>
-                        <br>
-                        <button id="submitFlag" onclick="checkFlag()">Submit Flag</button>
-                        <p id="flagResult"></p>
-                    </div>
-                    <button class="hidden-btn" onclick="printflag()">Flag 4</button>
-                </div>
-                <p class="flag"></p>
-                <div class="ctf-challenges">
-                    <!-- I can hide a flag here and no one will notice {There_is} -->
-                    <div class="challenge-card">
-                        <div class="hint">No Comment</div>
-                    </div>
-                    <div class="challenge-card">
-                        <div class="hint">Based Console</div>
-                    </div>
-                    <div class="challenge-card">
-                        <div class="hint">Hidden CSS</div>
-                    </div>
-                    <div class="challenge-card">
-                        <div class="hint">Poking Buttons</div>
-                    </div>
-                    <div class="challenge-card" id="locked">
-                        <div class="lock">🔒 Locked</div>
-                    </div>
-                    <div class="challenge-card" id="locked">
-                        <div class="lock">🔒 Locked</div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </body>
-    <script src="scripts/git_projects.js"></script>
-    <script src="scripts/scroll.js"></script>
-    <script src="scripts/ctf.js"></script>
+  <div class="bottom-notice"><span>Have a story to tell? Make something.</span><span>Independent by nature · Curious by design</span></div>
+  <div class="ticker"><span>✦ EXTRA! EXTRA! &nbsp; New ideas arriving daily &nbsp; ✦ &nbsp; Take your time, read widely &nbsp; ✦ &nbsp; Support independent corners of the internet &nbsp; ✦ &nbsp;</span></div>
+  <footer><span>© 2026 The Daily Quack</span><span>All the news that's fit to click.</span><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a></footer>
+</div>
+<script>
+  const search = document.getElementById('search');
+  const sort = document.getElementById('sort');
+  const rack = document.getElementById('articleRack');
+  const empty = document.getElementById('empty');
+  const count = document.getElementById('resultCount');
+  const buttons = [...document.querySelectorAll('.filter')];
+  let category = 'All';
+  function updateArticles() {
+    const term = search.value.trim().toLowerCase();
+    const cards = [...rack.querySelectorAll('.article')];
+    cards.sort((a,b) => {
+      if (sort.value === 'az') return a.dataset.title.localeCompare(b.dataset.title);
+      return sort.value === 'newest'
+        ? b.dataset.date.localeCompare(a.dataset.date)
+        : a.dataset.date.localeCompare(b.dataset.date);
+    });
+    cards.forEach(card => rack.appendChild(card));
+    let visible = 0;
+    cards.forEach(card => {
+      const text = (card.dataset.title + ' ' + card.dataset.category + ' ' + card.dataset.search + ' ' + card.innerText).toLowerCase();
+      const show = (category === 'All' || card.dataset.category === category) && text.includes(term);
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    empty.style.display = visible ? 'none' : 'block';
+    count.textContent = `${visible} ${visible === 1 ? 'paper' : 'papers'} on the rack`;
+  }
+  search.addEventListener('input', updateArticles);
+  sort.addEventListener('change', updateArticles);
+  buttons.forEach(button => button.addEventListener('click', () => {
+    category = button.dataset.category;
+    buttons.forEach(item => item.classList.toggle('active', item === button));
+    updateArticles();
+  }));
+  document.getElementById('today').textContent = new Intl.DateTimeFormat('en-CA',{month:'long',day:'numeric',year:'numeric'}).format(new Date());
+  updateArticles();
+</script>
+</body>
 </html>
